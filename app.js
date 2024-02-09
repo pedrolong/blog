@@ -8,7 +8,7 @@ const app = express();
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'phpmyadmin',
-    password: '123456789',
+    password: 'admin',
     database: 'mydb',
 });
 
@@ -46,7 +46,8 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     // Passe a variável 'req' para o template e use-a nas páginas para renderizar partes do HTML conforme determinada condição
     // Por exemplo de o usuário estive logado, veja este exemplo no arquivo views/partials/header.ejs
-    res.render('pages/index', { req: req });
+    // res.render('pages/index', { req: req });
+    res.redirect('/posts');
     // Caso haja necessidade coloque pontos de verificação para verificar pontos da sua logica de negócios
     console.log(`${req.session.username ? `Usuário ${req.session.username} logado no IP ${req.connection.remoteAddress}` : 'Usuário não logado.'}  `);
     //console.log(req.connection)
@@ -66,9 +67,26 @@ app.get('/about', (req, res) => {
         { titulo: "Post 2", conteudo: "Conteúdo post 2" },
         { titulo: "Post 3", conteudo: "Conteúdo post 3" }
     ];
-
-    res.render('pages/about', { req: req, posts: dados });
+    
+    res.render('pages/about', { req: req });
 });
+
+
+app.get('/posts', (req, res) => {
+   
+
+const query = 'SELECT * FROM posts;'
+
+    db.query(query, [], (err, dados) => {
+        if (err) throw err;
+        res.render('pages/pgposts', { req: req, posts: dados });
+
+
+        
+    });
+});
+
+
 
 // Rota para processar o formulário de login
 app.post('/login', (req, res) => {
@@ -93,7 +111,7 @@ app.post('/login', (req, res) => {
 // Rota para processar o formulário de caastro depostagem
 app.post('/cadastrar_posts', (req, res) => {
     const { titulo, conteudo } = req.body;
-    const autor = "admin";
+    const autor = req.session.username;
     const datapostagem = new Date();
 
     // const query = 'SELECT * FROM users WHERE username = ? AND password = SHA1(?)';

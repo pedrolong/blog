@@ -1,5 +1,25 @@
 <div>
     <% posts.forEach(post => { %>
-        <h1><%= post.titulo %></h1>
-    <% }) %>
+        <div class="tgroup">
+        <h1 class="t1"><%= post.titulo %></h1>
+        <h1 class="t1"><%- post.conteudo %></h1>
+        <h1 class="t1"><%= post.datapostagem %></h1>
+        </div>
+    <% }) %> 
+    </div>
 </div>
+<style>
+    .t1{
+        text-align: left;
+        margin: 10px;
+    }
+    .tgroup {
+        margin: 18px;
+        border:solid 4px #000000;
+        border-radius: 15px;
+
+    }
+    .tgroup:hover{
+        box-shadow: #000000 0.1em 0.1em 0.4em;
+    }
+</style>
