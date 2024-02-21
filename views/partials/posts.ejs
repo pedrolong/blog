@@ -1,13 +1,16 @@
 <div>
+    <a href="/excluirtodos"> Excluir todos os posts</a> 
     <% posts.forEach(post => { %>
         <div class="tgroup">
         <h1 class="t1"><%= post.titulo %></h1>
         <h1 class="t1"><%- post.conteudo %></h1>
         <h1 class="t1"><%= post.datapostagem %></h1>
+        <a href="/excluir_post/<%= post.id %>"> Deletar esse posts</a> 
         </div>
     <% }) %> 
     </div>
 </div>
+
 <style>
     .t1{
         text-align: left;

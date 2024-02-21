@@ -246,3 +246,37 @@ app.listen(3000, () => {
     console.log('----Login (MySQL version)-----')
     console.log('Servidor rodando na porta 3000');
 });
+// Rota para excluir um post
+app.get('/excluir_post/:id', (req, res) => {
+    // req.body -> usar qdo for um HTPP POST
+    // req.params -> usar qdo quise pegar dados da url pelo HTTP GET
+    const postId = req.params.id;
+    
+    // Executa a consulta SQL para excluir o post com base no ID fornecido
+    const query = 'DELETE FROM posts WHERE id = ?';
+    db.query(query, [postId], (err, result) => {
+        if (err) {
+            console.error('Erro ao excluir o post:', err);
+            res.redirect('/posts');
+        } else {
+            console.log(`Post excluído com sucesso: ${postId}`);
+            res.redirect('/posts');
+        }
+    });
+}); 
+app.get('/excluirtodos', (req, res) => {
+    // req.body -> usar qdo for um HTPP POST
+    // req.params -> usar qdo quise pegar dados da url pelo HTTP GET
+    
+    // Executa a consulta SQL para excluir o post com base no ID fornecido
+    const query = 'DELETE FROM posts;' 
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao excluir o post:', err);
+            res.redirect('/posts');
+        } else {
+            console.log(`Post excluído com sucesso`);
+            res.redirect('/posts');
+        }
+    });
+}); 
