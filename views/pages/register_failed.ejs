@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="ptbr">
-
-<head>
+  <head>
     <%- include('../partials/head'); %>
-</head>
+  </head>
 
-<body class="container">
-
-    <header>
-        <%- include('../partials/header'); %>
-    </header>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
 
     <main>
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="jumbotron">
-                    <h1>Cadastro de inválido !!!</h1>
-                    <p><a href="/cadastrar">Tentar novamente</a> ou efetuar <a href="/login">LOGIN</a></p>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="jumbotron">
+            <h1>Cadastro de inválido !!!</h1>
+            <p>
+              <a href="/cadastrar">Tentar novamente</a> ou efetuar
+              <a href="/login">LOGIN</a>
+            </p>
+          </div>
         </div>
+      </div>
     </main>
 
-    <footer>
-        <%- include('../partials/footer'); %>
-    </footer>
-
-</body>
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>
